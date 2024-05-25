@@ -1,4 +1,4 @@
-package com.rockthejvm
+package com.jpark0224
 
 object Basics extends App {
   
