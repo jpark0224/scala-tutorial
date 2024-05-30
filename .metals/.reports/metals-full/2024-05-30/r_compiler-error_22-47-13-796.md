@@ -1,9 +1,25 @@
+file://<WORKSPACE>/src/main/scala/com/jpark0224/ObjectOrientation.scala
+### java.lang.AssertionError: NoDenotation.owner
+
+occurred in the presentation compiler.
+
+presentation compiler configuration:
+Scala version: 3.3.3
+Classpath:
+<HOME>/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.3.3/scala3-library_3-3.3.3.jar [exists ], <HOME>/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.12/scala-library-2.13.12.jar [exists ]
+Options:
+
+
+
+action parameters:
+offset: 4442
+uri: file://<WORKSPACE>/src/main/scala/com/jpark0224/ObjectOrientation.scala
+text:
+```scala
 package com.jpark0224
 
 object ObjectOrientation extends App {
   
-    // java equivalent: public static void main(String[] args) which exeuctes this object's body
-
     // class and instance
     class Animal {
         // define fields
@@ -120,26 +136,27 @@ object ObjectOrientation extends App {
     // generics
     abstract class MyList[T] {
         def head: T
-        def tail: MyList[T]
+        def tail: MyListp[@@]
     }
 
-    // the type has become concrete as Int
-    val aList: List[Int] = List(1,2,3) // List.apply(1,2,3)
-    val first = aList.head
-    val rest = aList.tail
-    val aStringList = List("hello", "Scala")
-    val firstString = aStringList.head // string
-
-    // Point #1: in Scala we usually operate with IMMUTABLE values/objects
-    // Any modification to an object must return ANOTHER object
-    /* 
-        Benefits:
-            1) works miracles in multithreades/distrbuted env
-            2) helps making sense of the code ("reasoning about")
-     */
-    val reversedList = aList.reverse // returns a NEW list
-
-    // Point #2: Scala is closest to the object-oriented ideal
-    // every single code is inside a class or object.
-
 }
+```
+
+
+
+#### Error stacktrace:
+
+```
+dotty.tools.dotc.core.SymDenotations$NoDenotation$.owner(SymDenotations.scala:2607)
+	scala.meta.internal.pc.SignatureHelpProvider$.isValid(SignatureHelpProvider.scala:83)
+	scala.meta.internal.pc.SignatureHelpProvider$.notCurrentApply(SignatureHelpProvider.scala:94)
+	scala.meta.internal.pc.SignatureHelpProvider$.$anonfun$1(SignatureHelpProvider.scala:48)
+	scala.collection.StrictOptimizedLinearSeqOps.dropWhile(LinearSeq.scala:280)
+	scala.collection.StrictOptimizedLinearSeqOps.dropWhile$(LinearSeq.scala:278)
+	scala.collection.immutable.List.dropWhile(List.scala:79)
+	scala.meta.internal.pc.SignatureHelpProvider$.signatureHelp(SignatureHelpProvider.scala:48)
+	scala.meta.internal.pc.ScalaPresentationCompiler.signatureHelp$$anonfun$1(ScalaPresentationCompiler.scala:412)
+```
+#### Short summary: 
+
+java.lang.AssertionError: NoDenotation.owner
